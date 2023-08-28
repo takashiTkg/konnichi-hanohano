@@ -48,7 +48,20 @@ function init() {
 
   // CAMERA
 
-  camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
+  let aspRatio = window.innerWidth / window.innerHeight;
+  let fov;
+  if (aspRatio > 1) {
+    fov = 45;
+  } else if (aspRatio > 0.8) {
+    fov = 55;
+  } else if (aspRatio > 0.6) {
+    fov = 70;
+  } else if (aspRatio > 0.5) {
+    fov = 80;
+  } else {
+    fov = 90;
+  }
+  camera = new THREE.PerspectiveCamera(fov, aspRatio, 1, 1500);
   camera.position.set(0, 400, 700);
 
   cameraTarget = new THREE.Vector3(0, 150, 0);
